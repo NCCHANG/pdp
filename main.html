@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Daily Planner</title>
     <link rel = "icon" href = "images/calendar.ico">  <!--"https://www.flaticon.com/free-icons/calendar" Calendar icons created by Freepik - Flaticon-->
-    <link rel = "Stylesheet" href = "main.css">
+    <link rel = "Stylesheet" href = "stylesheet/topBar.css">
     
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap'); /*import Kadwa font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&family=Kadwa:wght@400;700&display=swap');
+    /*(UP)import Inter font*/
     @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Kadwa:wght@400;700&display=swap'); /*import Jersey 10 font*/
     </style>
 </head>
 <body>
     <div class = "TopBar">
-        <div class = "LeftTopBar">
+        <div id="LeftTopBar">
             <div>Personal Daily Planner</div>
             <div>|</div>
-            <a class = "about", href="huh.html">About</a>
+            <a id = "about">About</a> <!--to put href-->
+        </div>
+        <div id = "RightTopBar">
+            <button id = "signUp">Sign Up</button>
+            <button id = "logIn">Log In</button>
         </div>
     </div>
 </body>

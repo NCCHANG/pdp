@@ -1,0 +1,47 @@
+body {
+    background-color: #2D323F;
+    margin: 0;
+}
+
+.TopBar {
+    display: flex;
+    font-size: small;
+    background-color: #2C2D31;
+    color :white;
+    height: 85px;
+    font-family : "Kadwa", serif;
+}
+
+#LeftTopBar {
+    display: flex;
+    width: 350px;
+    align-items: center;
+    justify-content: space-around;
+}
+#about {
+    background-color: #2C2D31;
+    color: white;
+    text-decoration: none;
+}
+
+#RightTopBar {
+    margin-left: auto;
+    width:200px;
+    align-content: center;
+    justify-content:center;
+}
+#logIn,#signUp{
+    font-family: "Inter", serif;
+    border-radius: 15px;
+    border-color: white;
+    border-width: 1px;
+    padding:5px 20px;
+    color: white;
+}
+#logIn {
+    background-color: #2C2D31;
+    margin-left: 15px;
+}
+#signUp {
+    background-color: #705353;
+}
