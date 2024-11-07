@@ -33,15 +33,16 @@ body {
 #logIn,#signUp{
     font-family: "Inter", serif;
     border-radius: 15px;
-    border-color: white;
-    border-width: 1px;
     padding:5px 20px;
     color: white;
 }
 #logIn {
     background-color: #2C2D31;
     margin-left: 15px;
+    border-color: white;
+    border-width: 1px;
 }
 #signUp {
     background-color: #705353;
+    border-width: 0px;
 }
