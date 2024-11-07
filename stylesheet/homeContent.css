@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
     margin:5px;
+    user-select: none;
 }
 h1 {
     color: white;
@@ -25,15 +26,21 @@ h1 {
     color: white;
     font-family: Helvetica, sans-serif,serif;
     font-size: small;
+    user-select: none;
 }
 #createBtn {
     display: flex;
     color: white;
+    cursor: pointer;
     padding: 5px 20px;
     width: fit-content;
-    border-radius: 15px;
+    border-radius: 5px;
     border-width: 0;
     background-color: #7E221F;
     font-size: large;
     margin-top: 10px;
+}
+
+#createBtn:hover {
+    background-color: #6a1d1a;
 }

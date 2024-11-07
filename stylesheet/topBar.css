@@ -21,10 +21,20 @@ body {
     align-items: center;
     justify-content: space-around;
 }
+#pdpTitle {
+    cursor: default;
+    user-select: none;
+}
+#slash {
+    cursor: default;
+    user-select: default;
+    user-select: none;
+}
 #about {
     background-color: #2C2D31;
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 #RightTopBar {
@@ -35,17 +45,25 @@ body {
 }
 #logIn,#signUp{
     font-family: "Inter", serif;
-    border-radius: 15px;
+    border-radius: 5px;
     padding:5px 20px;
     color: white;
 }
 #logIn {
     background-color: #2C2D31;
     margin-left: 15px;
+    cursor: pointer;
     border-color: white;
     border-width: 1px;
 }
+#logIn:hover {
+    background-color: #4c4d54;
+}
 #signUp {
     background-color: #705353;
+    cursor: pointer;
     border-width: 0px;
+}
+#signUp:hover {
+    background-color: #936d6d;
 }
