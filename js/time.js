@@ -1,5 +1,5 @@
 function updateTime() {
-    
+    // to do: make an options between 12hr and 24 hour
     const now = new Date();
     
     const hour = now.getHours();
