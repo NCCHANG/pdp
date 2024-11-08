@@ -4,8 +4,12 @@ function updateTime() {
     
     const hour = now.getHours();
     const minute = now.getMinutes();
-    const time = hour + ":" + minute;
-    
+    let time;
+    if(minute<10) {
+        time = hour + ":0" + minute;
+    } else {
+        time = hour + ":" + minute;
+    }
     document.getElementById("time").innerHTML = time;
 }
 document.body.onload = updateTime;
