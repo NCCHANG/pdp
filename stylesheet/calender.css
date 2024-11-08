@@ -1,0 +1,8 @@
+#time {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15px;
+    font-family: "Alumni Sans Pinstripe",serif;
+    color: white;
+    font-size: 60px;
+}
