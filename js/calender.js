@@ -30,10 +30,10 @@ function daysBtns() {
         if(i === 1) {
             btn.style = `grid-column:${firstDayOfMonth}`
         }
-        if (i == tdyDate) {
+        //
+        if (i == tdyDate) { //highlight current date
             btn.style = "background-color:#6d7897";
         }
-        //
         const existing = document.querySelector("#calender");
         existing.appendChild(btn);
     }
