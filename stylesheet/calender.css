@@ -17,3 +17,6 @@
 .days {
     color: white;
 }
+#btn1 {
+    grid-column: 3;
+}
