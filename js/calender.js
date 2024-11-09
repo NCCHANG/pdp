@@ -1,5 +1,7 @@
 function daysBtns() {
     const tdy = new Date();
+    //get date
+    tdyDate = tdy.getDate();
     //get Month
     const monthNames = ["January","February","March","April",
         "May","June","July","August","September","October",
@@ -27,6 +29,9 @@ function daysBtns() {
         //set first button into correct day aka column
         if(i === 1) {
             btn.style = `grid-column:${firstDayOfMonth}`
+        }
+        if (i == tdyDate) {
+            btn.style = "background-color:#6d7897";
         }
         //
         const existing = document.querySelector("#calender");
