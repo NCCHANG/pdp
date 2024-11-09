@@ -10,7 +10,7 @@ function updateTime() {
     } else {
         time = hour + ":" + minute;
     }
-    document.getElementById("time").innerHTML = time;
+    document.querySelector(".time").innerHTML = time;
 }
 document.body.onload = updateTime;
 setInterval(updateTime,1000)
