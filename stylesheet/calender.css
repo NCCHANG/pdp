@@ -5,6 +5,7 @@
     font-family: "Alumni Sans Pinstripe",serif;
     color: white;
     font-size: 60px;
+    user-select: none;
 }
 
 #calender, #sevenDays {
