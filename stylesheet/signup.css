@@ -1,9 +1,9 @@
 h2 {
     color: white;
     font-family: 'Jersey 10' , serif;
-    font-weight: 200;
-    margin: 5px;
-    font-size: 65px;
+    font-weight: 400;
+    margin: 1px;
+    font-size: 45px;
 }
 
 label {
@@ -25,7 +25,7 @@ input[type="text"], input[type="password"] {
     font-family: 'Inter', sans-serif;
 }
 
-#proceedBtn {
+#proceedBtn, #signinBtn {
     width: 100%;
     background-color: #2d89ef;
     color: white;
