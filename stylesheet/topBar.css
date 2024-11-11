@@ -41,6 +41,7 @@ body {
     width:200px;
     align-content: center;
     justify-content:center;
+    text-decoration: none;
 }
 #logIn,#signUp{
     font-family: "Inter", serif;
