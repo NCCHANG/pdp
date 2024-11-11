@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Daily Planner</title>
+    <link rel = "icon" href = "images/calendar.ico">  <!--"https://www.flaticon.com/free-icons/calendar" Calendar icons created by Freepik - Flaticon-->
+    <link rel = "Stylesheet" href = "stylesheet/topBar.css">
+    <link rel = "Stylesheet" href = "stylesheet/homeContent.css">
+    <link rel = "Stylesheet" href = "stylesheet/signup.css">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap'); /*import Kadwa font */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+10&family=Kadwa:wght@400;700&display=swap');
+    /*(UP)import Inter font*/
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Kadwa:wght@400;700&display=swap'); /*import Jersey 10 font*/
+    </style>
+</head>
+<body>
+    <div class = "TopBar">
+        <div id="LeftTopBar">
+            <div id="pdpTitle">Personal Daily Planner</div>
+            <div id = "slash">|</div>
+            <a id = "about">About</a> <!--to put href-->
+        </div>
+        <div id = "RightTopBar">
+            <button id = "signUp">Sign Up</button>
+            <button id = "logIn">Log In</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div id="mainHeading">
+            <h2>Start planning your</h2>
+            <h2>perfect day.</h2>
+            <h2>Sign up now and get organized!</h2>
+        </div>
+        <form>
+            <label for="email"><b>Email Address</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <label for="psw-comfirm"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="psw-comfirm" required>
+            
+            <button type="submit" id="proceedBtn">Proceed</button>
+        </form>
+    </div>
+</body>
+</html>
