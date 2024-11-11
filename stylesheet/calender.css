@@ -1,8 +1,23 @@
-#time {
+.time {
     display: flex;
     justify-content: flex-end;
     margin-right: 15px;
     font-family: "Alumni Sans Pinstripe",serif;
     color: white;
     font-size: 60px;
+    user-select: none;
+}
+
+#calender, #sevenDays {
+    display: grid;
+    grid-template-columns: repeat(7,100px);
+}
+#sevenDays {
+    grid-column: 1/-1;
+}
+.days {
+    color: white;
+}
+#btn1 {
+    grid-column: 3;
 }

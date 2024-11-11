@@ -27,7 +27,6 @@ body {
 }
 #slash {
     cursor: default;
-    user-select: default;
     user-select: none;
 }
 #about {
