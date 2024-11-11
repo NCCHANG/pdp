@@ -29,8 +29,18 @@ function daysBtns() {
     const firstDayOfMonth = setFirstOfMonth.getDay(); //in int
     for(let i = 1; i <= lastDate; i++) {
         const btn = document.createElement("button");
-        const content = document.createTextNode(i);
-        btn.appendChild(content);
+        const divBtnContent = document.createElement("div");
+        const pTask = document.createElement("p");
+        const pDate = document.createElement("p");
+        divBtnContent.className = "btnContent";
+        
+        const date = document.createTextNode(i);
+        const task = document.createTextNode("idk man");
+        pTask.appendChild(task);
+        pDate.appendChild(date);
+        divBtnContent.appendChild(pTask);
+        divBtnContent.appendChild(pDate);
+        btn.appendChild(divBtnContent);
         btn.id = `btn${i}`;
 
         //STYLE
