@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+    <title>Personal Daily Planner</title>
+    <link rel="stylesheet" href="../stylesheet/topBar.css">
+    <link rel="stylesheet" href="../stylesheet/yearlyCCalendar.css">
+    <script src = "../js/yearlyCalendar.js" defer></script>  <!-- ../ is used to go up one level from the HTML folder to find the js folder.--> <!-- in my folder, js file was on the top..-->
+    
+
+</head>
+
+
+<body> 
+    <div class = "TopBar">
+        <div id="LeftTopBar">
+            <div id="pdpTitle">Personal Daily Planner</div>
+            <div id = "slash">|</div>
+            <a id = "about">About</a> <!--to put href-->
+        </div>
+        <div id = "RightTopBar">
+        </div>
+    </div>   
+    
+    <div class = "mediumBar">
+        <div id = "LeftMediumBar">
+            <button id="prevYear" class="triangle-button left" onclick="changeYear(-1)"></button>
+            <h1 id="yearDisplay">2024</h1>
+            <button id="nextYear" class="triangle-button right" onclick="changeYear(1)"></button>
+        </div>
+        <div id = "RightMediumBar">
+            <div class="button-container">
+                <a href="day.html"><button id="DayButton">Day</button></a> <!--will change later aaaaaa-->
+                <a href="day.html"><button id="WeekButton">Week</button></a>
+                <a href="day.html"><button id="MonthButton">Month</button></a>
+                <a href="yearlyCalendar.html"><button id="YearButton">Year</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="yearlyCalendarContainer"></div>
+
+    
+
+</body>
+</html>

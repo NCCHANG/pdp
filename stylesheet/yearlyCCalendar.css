@@ -1,0 +1,112 @@
+/* Container for the whole medium bar */
+.mediumBar {  /*middle */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2D323F;
+    margin-top:20px;
+}
+
+#LeftMediumBar {
+    display: flex;
+    align-items :center;
+    gap:50px; /* adjust between button and yr */
+    padding-left: 70px;  
+}
+
+#LeftMediumBar h1 {
+    font-size: 60px; 
+    color:white;
+    margin: 0; 
+}
+
+#prevYear, #nextYear {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    background: transparent;
+    cursor: pointer;
+}
+
+#prevYear { /*adjust triangle.. */
+    border-width: 15px 20px 15px 0;
+    border-color: transparent white transparent transparent;
+}
+
+#nextYear {
+    border-width: 15px 0 15px 20px;
+    border-color: transparent transparent transparent white;
+}
+
+#RightMediumBar {
+    padding-right : 70px;
+}
+
+.button-container { /*right side*/
+    display: flex; 
+    justify-content: center;
+    align-items: center;  
+    margin-top: 20px;  
+    height: 50px;
+}
+
+
+#DayButton, #WeekButton, #MonthButton, #YearButton {
+    font-size: 20px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 5px 20px;
+    width: fit-content;
+    margin-right: 0px; 
+    font-weight: bold; 
+}
+
+#yearlyCalendarContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 months in a row */
+    gap: 20px; 
+    justify-items: center;
+    margin-top: 10px;
+    margin: 40px auto;
+}
+
+
+.month {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 350px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.month h3 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    font-size: 0.9em;
+}
+
+.day-name {
+    font-weight: bold;
+    color: #555;
+}
+
+.day {
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.day:hover {
+    background-color: #eaeaea;
+    cursor: pointer;
+}
