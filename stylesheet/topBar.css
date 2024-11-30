@@ -22,8 +22,10 @@ body {
     justify-content: space-around;
 }
 #pdpTitle {
-    cursor: default;
+    cursor: pointer;
     user-select: none;
+    text-decoration: none;
+    color: white;
 }
 #slash {
     cursor: default;
@@ -48,6 +50,7 @@ body {
     border-radius: 5px;
     padding:5px 20px;
     color: white;
+    text-decoration: none;
 }
 #logIn {
     background-color: #2C2D31;
