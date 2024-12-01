@@ -24,7 +24,6 @@ const submit = document.getElementById("proceedBtn");
 submit.addEventListener("click", (event) => {
     event.preventDefault();
 
-    // Get values from form fields
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
