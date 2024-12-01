@@ -17,11 +17,10 @@ const auth = getAuth();
 
 const submit = document.getElementById("proceedBtn");
 
-submit.addEventListener("click", async function(event) {
+submit.addEventListener("click", (event) => {
     event.preventDefault();
 
     // Get values from form fields
-    const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
@@ -29,12 +28,24 @@ submit.addEventListener("click", async function(event) {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            alert("Account created successfully!");
-            window.location.href = "home.html";
+            const userData = { email: email }; 
+            showMessage('Account Created Successfully', 'signUpMessage');
+            const docRef = doc(db, "users", user.uid);
+            setDoc(docRef, userData)
+                .then(() => {
+                    window.location.href = 'main.html';
+                })
+                .catch((error) => {
+                    console.error("Error writing document:", error.message);
+                });
         })
         .catch((error) => {
-            const errorcode = error.code;
-            const errorMessage = error.message;
-            alert(`Error: ${errorMessage}`);
+            const errorCode = error.code;
+            if (errorCode === 'auth/email-already-in-use') {
+                showMessage('Email Address Already Exists !!!', 'signUpMessage');
+            } else {
+                showMessage('Unable to create User', 'signUpMessage');
+            }
+            console.error("Error:", error.message);
         });
 });
