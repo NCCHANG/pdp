@@ -34,7 +34,7 @@ submit.addEventListener("click", (event) => {
         .then((userCredential) => {
             const user = userCredential.user;
             alert("Login successful!");
-            window.location.href = 'main.html'; // Redirect to main page or dashboard
+            window.location.href = 'yearlyCalendar.html'; // Redirect to main page or dashboard
         })
         .catch((error) => {
             const errorCode = error.code;
