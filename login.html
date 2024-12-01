@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Daily Planner</title>
+    <script type="module" src="./js/signin.js" defer></script>
     <link rel = "icon" href = "images/calendar.ico">  <!--"https://www.flaticon.com/free-icons/calendar" Calendar icons created by Freepik - Flaticon-->
     <link rel = "Stylesheet" href = "stylesheet/topBar.css">
     <link rel = "Stylesheet" href = "stylesheet/homeContent.css">
@@ -35,10 +36,10 @@
         </div>
         <form>
             <label for="email"><b>Email Address</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
+            <input type="text" placeholder="Enter Email" id='email' name="email" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" id='password' name="psw" required>
             
             <button type="Sign in" id="signinBtn">Signin</button>
         </form>

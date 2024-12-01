@@ -24,32 +24,39 @@ const submit = document.getElementById("proceedBtn");
 submit.addEventListener("click", (event) => {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+        alert("Please fill in all required fields.");
+        return;
+    }
 
     // Firebase Authentication - Create user
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             const userData = { email: email }; 
-            showMessage('Account Created Successfully', 'signUpMessage');
+
             const docRef = doc(db, "users", user.uid);
             setDoc(docRef, userData)
                 .then(() => {
+                    alert("Account created successfully!");
                     window.location.href = 'main.html';
                 })
                 .catch((error) => {
                     console.error("Error writing document:", error.message);
+                    alert("Error saving user data.");
                 });
         })
         .catch((error) => {
             const errorCode = error.code;
+            const errorMessage = error.message;
             if (errorCode === 'auth/email-already-in-use') {
-                showMessage('Email Address Already Exists !!!', 'signUpMessage');
+                alert("Email already in use. Please log in.");
             } else {
-                showMessage('Unable to create User', 'signUpMessage');
+                alert(`Error: ${errorMessage}`);
             }
-            console.error("Error:", error.message);
+            console.error("Error creating user:", error.message);
         });
 });
