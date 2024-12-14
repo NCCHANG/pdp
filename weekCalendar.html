@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Daily Planner</title>
+    <link rel="stylesheet" href="stylesheet/weekCalendar.css">
+    <link rel="stylesheet" href="stylesheet/topBar.css">
+</head>
+<body>
+    <div class = "TopBar">
+        <div id="LeftTopBar">
+            <a id="pdpTitle" href = "main.html">Personal Daily Planner</a>
+            <a id = "slash">|</a>
+            <a id = "about">About</a> <!--to put href-->
+        </div>
+        <div id = "RightTopBar">
+        </div>
+    </div>
+    <div class = "MediumBar">
+        <div id= "LeftMediumBar">
+            <button id = "prevWeek"></button>
+            <h1 id="weekRange"></h1>
+            <button id = "nextWeek"></button>
+            <script src="js/weekCalendar.js"></script>
+        </div>
+        <div id = "RightMediumBar">
+            <div class="button-container">
+                <a href="day.html"><button id="DayButton">Day</button></a> <!--will change later aaaaaa-->
+                <a href="weekCalendar.html"><button id="WeekButton">Week</button></a>
+                <a href="day.html"><button id="MonthButton">Month</button></a>
+                <a href="yearlyCalendar.html"><button id="YearButton">Year</button></a>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
