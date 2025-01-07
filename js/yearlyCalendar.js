@@ -1,9 +1,8 @@
-tdy = new Date();
-let currentYear = tdy.getFullYear();
+let currentYear = new Date().getFullYear();
 
 const yearlyCalendarContainer = document.getElementById("yearlyCalendarContainer");
 const yearDisplay = document.getElementById("yearDisplay");
-yearDisplay.textContent = tdy.getFullYear();
+yearDisplay.textContent = new Date().getFullYear();
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
