@@ -1,7 +1,9 @@
-let currentYear = 2024;
+tdy = new Date();
+let currentYear = tdy.getFullYear();
 
 const yearlyCalendarContainer = document.getElementById("yearlyCalendarContainer");
 const yearDisplay = document.getElementById("yearDisplay");
+yearDisplay.textContent = tdy.getFullYear();
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
