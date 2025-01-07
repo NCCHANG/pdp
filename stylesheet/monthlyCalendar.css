@@ -1,0 +1,135 @@
+/* Medium Bar Styling */
+.mediumBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2D323F;
+    margin-top:20px;
+}
+
+#LeftMediumBar {
+    display: flex;
+    align-items: center;
+}
+
+#LeftMediumBar h1 {
+    font-size: 60px; 
+    font-family: 'Jersey 10' , serif;
+    color:white;
+    font-weight: 400;
+    margin: 10; 
+}
+
+#prevMonth, #nextMonth {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    background: transparent;
+    cursor: pointer;
+}
+
+#prevMonth { /*adjust triangle.. */
+    border-width: 15px 20px 15px 0;
+    border-color: transparent white transparent transparent;
+}
+
+#nextMonth {
+    border-width: 15px 0 15px 20px;
+    border-color: transparent transparent transparent white;
+}
+
+#monthDisplay {
+    margin: 0 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.triangle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.triangle-button.left {
+    background-image: url('icons/left-arrow.svg'); /* Replace with your left arrow icon */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.triangle-button.right {
+    background-image: url('icons/right-arrow.svg'); /* Replace with your right arrow icon */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Right Medium Bar Buttons */
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.button-container button {
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #2a4371;
+}
+
+/* Calendar Container */
+#monthlyCalendarContainer {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #2D323F;
+    font-family: Arial, sans-serif;
+}
+
+#monthlyCalendarContainer .month {
+    grid-column: span 7;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family : "Kadwa", serif;
+    color:white;
+}
+
+#monthlyCalendarContainer .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+#monthlyCalendarContainer .day-name {
+    background-color: #2D323F;
+    padding: 10px;
+    text-align: center;
+    font-family: Helvetica, sans-serif,serif;
+    font-weight: bold;
+}
+
+#monthlyCalendarContainer .day {
+    background-color: #2D323F;
+    padding: 10px;
+    text-align: right;
+}
+
+#monthlyCalendarContainer .day:hover {
+    background-color: #3a4153;
+    cursor: pointer;
+}
