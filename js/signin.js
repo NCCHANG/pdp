@@ -33,6 +33,7 @@ submit.addEventListener("click", (event) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+            localStorage.setItem("user", user.email);
             alert("Login successful!");
             window.location.href = 'yearlyCalendar.html'; // Redirect to main page or dashboard
         })
