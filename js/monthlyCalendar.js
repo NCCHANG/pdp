@@ -1,5 +1,5 @@
-let currentYear = 2025;
-let currentMonth = 0;
+let currentYear = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
 
 const yearlyCalendarContainer = document.getElementById("monthlyCalendarContainer");
 const yearDisplay = document.getElementById("monthDisplay");
