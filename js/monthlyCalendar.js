@@ -8,7 +8,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
-const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const dayNames = ["Sunday", "Monday ", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 function generateMonth(year, month) {
     const firstDay = new Date(year, month, 1).getDay();
@@ -18,9 +18,10 @@ function generateMonth(year, month) {
     monthDiv.className = "month";
 
     // Month title
-    const title = document.createElement("h3");
-    title.textContent = `${monthNames[month]} ${year}`;
-    monthDiv.appendChild(title);
+    const title = document.createElement("h1");
+    title.className = "Datedisplay";
+    title.textContent = `${monthNames[month]}`;
+    yearlyCalendarContainer.appendChild(title);
 
     // Day names row
     const daysDiv = document.createElement("div");
