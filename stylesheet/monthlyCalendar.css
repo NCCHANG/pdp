@@ -21,6 +21,30 @@
     margin: 10; 
 }
 
+.hideMediumBar {
+    display: none;
+}
+.profileDropDown {
+    display: none;
+}
+.profileSelecting {
+    background-color:#63666f;
+}
+.dropDownContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+.showProfileDropDown {
+    display: flex;
+    justify-content: right;
+    color: black;
+    padding: 10px 5px;
+    background-color: white;
+    border: 1px solid #42444a;
+    margin-right: 150px;
+    width: fit-content;
+}
+
 #prevMonth, #nextMonth {
     width: 0;
     height: 0;

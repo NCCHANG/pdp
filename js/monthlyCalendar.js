@@ -76,5 +76,12 @@ function changeMonth(offset) {
     generateMonthCalendar(currentYear, currentMonth);
 }
 
+document.querySelector(".iconBorder").addEventListener("click",displayDropdown);
+function displayDropdown() {
+    document.querySelector(".profileDropDown").classList.toggle("showProfileDropDown");
+    document.querySelector(".iconBorder").classList.toggle("profileSelecting");
+    document.querySelector(".mediumBar").classList.toggle("hideMediumBar");
+}
+
 // Initialize the calendar
 generateMonthCalendar(currentYear, currentMonth);
