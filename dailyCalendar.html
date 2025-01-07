@@ -7,7 +7,7 @@
     <title>Personal Daily Planner</title>
     <link rel="stylesheet" href="stylesheet/topBar.css">
     <link rel="stylesheet" href="stylesheet/monthlyCalendar.css">
-    <script src="js/monthlyCalendar.js" defer></script>
+    <script src="js/dailyCalendar.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Kadwa:wght@400;700&display=swap'); /*import Jersey 10 font*/
     </style>
@@ -16,35 +16,28 @@
 <body>
     <div class="TopBar">
         <div id="LeftTopBar">
-            <a id="pdpTitle" href="monthlyCalendar.html">Personal Daily Planner</a>
+            <a id="pdpTitle" href="dailyCalendar.html">Personal Daily Planner</a>
             <a id="slash">|</a>
             <a id="about" href="#">About</a> <!-- Add link later -->
         </div>
-        <div id="RightTopBar">
-            <div class="iconBorder"><img src="./images/UserIcon.png" alt="UserIco"></div>
-        </div>
+        <div id="RightTopBar"></div>
     </div>
 
     <div class="mediumBar">
         <div id="LeftMediumBar">
-            <button id="prevMonth" class="triangle-button left" onclick="changeMonth(-1)"></button>
-            <h1 id="monthDisplay">December</h1>
-            <button id="nextMonth" class="triangle-button right" onclick="changeMonth(1)"></button>
+            <button id="prevDay" class="triangle-button left" onclick="changeDay(-1)"></button>
+            <h1 id="Datedisplay">December</h1>
+            <button id="nextDay" class="triangle-button right" onclick="changeDay(1)"></button>
         </div>
         <div id="RightMediumBar">
             <div class="button-container">
-                <a href="dailyCalendar.html"><button id="DayButton">Day</button></a>
+                <a href="day.html"><button id="DayButton">Day</button></a>
                 <a href="monthlyCalendar.html"><button id="MonthButton">Month</button></a>
                 <a href="yearlyCalendar.html"><button id="YearButton">Year</button></a>
             </div>
         </div>
     </div>
-    <div class = "dropDownContainer">
-    <div class="profileDropDown">
-        test,test
-    </div>
-    </div>
 
-    <div id="monthlyCalendarContainer"></div>
+    <div id="dailyCalendarContainer"></div>
 </body>
 </html>
