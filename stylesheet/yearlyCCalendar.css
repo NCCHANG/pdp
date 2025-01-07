@@ -21,6 +21,32 @@
     margin: 0; 
 }
 
+/* drop down medium bar  */
+.hideMediumBar {
+    display: none;
+}
+.profileDropDown {
+    display: none;
+}
+.profileSelecting {
+    background-color:#63666f;
+}
+.dropDownContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+.showProfileDropDown {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    padding: 10px 5px;
+    background-color: white;
+    border: 1px solid #42444a;
+    margin-right: 150px;
+    width: fit-content;
+}
+/* ------------------ */
+
 #prevYear, #nextYear {
     width: 0;
     height: 0;

@@ -42,7 +42,7 @@ submit.addEventListener("click", (event) => {
             setDoc(docRef, userData)
                 .then(() => {
                     alert("Account created successfully!");
-                    window.location.href = 'main.html';
+                    window.location.href = 'login.html';
                 })
                 .catch((error) => {
                     console.error("Error writing document:", error.message);

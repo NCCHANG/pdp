@@ -1,8 +1,4 @@
 let currentYear = new Date().getFullYear();
-console.log(localStorage.getItem("user"))
-//TODO
-//sign out change localStorage.removeItem(key);
-//if !localStorage.getItem("user") back to main page
 const yearlyCalendarContainer = document.getElementById("yearlyCalendarContainer");
 const yearDisplay = document.getElementById("yearDisplay");
 yearDisplay.textContent = new Date().getFullYear();
@@ -71,6 +67,19 @@ function changeYear(offset) {  //onclick -1 / +1
     yearDisplay.textContent = currentYear;
     generateYearCalendar(currentYear);
 }
+// drop down bar
+document.querySelector(".iconBorder").addEventListener("click",displayDropdown);
+function displayDropdown() {
+    document.querySelector(".profileDropDown").classList.toggle("showProfileDropDown");
+    document.querySelector(".email").innerHTML = `Email => ${localStorage.getItem("user")}`
+    document.querySelector(".iconBorder").classList.toggle("profileSelecting");
+    document.querySelector(".mediumBar").classList.toggle("hideMediumBar");
+}
 
-
+document.querySelector(".logout").addEventListener("click",logOut);
+function logOut() {
+    localStorage.removeItem("user");
+    window.location.href = "main.html";
+}
+//------------------
 generateYearCalendar(currentYear);

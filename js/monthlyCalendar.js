@@ -76,13 +76,20 @@ function changeMonth(offset) {
 
     generateMonthCalendar(currentYear, currentMonth);
 }
-
+//drop down bar
 document.querySelector(".iconBorder").addEventListener("click",displayDropdown);
 function displayDropdown() {
     document.querySelector(".profileDropDown").classList.toggle("showProfileDropDown");
+    document.querySelector(".email").innerHTML = `Email => ${localStorage.getItem("user")}`
     document.querySelector(".iconBorder").classList.toggle("profileSelecting");
     document.querySelector(".mediumBar").classList.toggle("hideMediumBar");
 }
 
+document.querySelector(".logout").addEventListener("click",logOut);
+function logOut() {
+    localStorage.removeItem("user");
+    window.location.href = "main.html";
+}
+//---------------
 // Initialize the calendar
 generateMonthCalendar(currentYear, currentMonth);
