@@ -14,6 +14,22 @@ body {
     font-family : "Kadwa", serif;
     width:100%;
 }
+img {
+    width: 30px;
+    height: 30px;
+}
+.iconBorder {
+    font-family: serif;
+    border-width: 2px;
+    width: fit-content;
+    border-color: white;
+    border-style: solid;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.iconBorder:hover {
+    background-color: #44464C;
+}
 
 #LeftTopBar {
     display: flex;
