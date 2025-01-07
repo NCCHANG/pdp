@@ -1,0 +1,22 @@
+.tasks-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #2D323F;
+    color: white;
+    border-radius: 8px;
+}
+
+.tasks-container h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#tasks-list {
+    list-style: none;
+    padding: 0;
+}
+
+#tasks-list li {
+    margin: 5px 0;
+    font-size: 1.2em;
+}
