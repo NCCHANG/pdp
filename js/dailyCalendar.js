@@ -1,7 +1,5 @@
 let currentDate = new Date();
 
-const dayDisplay = document.getElementById("dayDisplay");
-
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
     //{ time: "09:00", description: "Team Meeting" },
@@ -57,7 +55,6 @@ function changeDay(offset) {
     currentDate.setDate(currentDate.getDate() + offset);
 
     // Update the displayed date
-    const dayDisplay = document.getElementById("dayDisplay");
     const options = { year: "numeric", month: "long", day: "numeric" };
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
 
