@@ -46,30 +46,6 @@
 }
 /* ------------------ */
 
-#prevMonth, #nextMonth {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    background: transparent;
-    cursor: pointer;
-}
-
-#prevMonth { /*adjust triangle.. */
-    border-width: 15px 20px 15px 0;
-    border-color: transparent white transparent transparent;
-}
-
-#nextMonth {
-    border-width: 15px 0 15px 20px;
-    border-color: transparent transparent transparent white;
-}
-
-#monthDisplay {
-    margin: 0 15px;
-    font-size: 1.8em;
-    font-weight: bold;
-}
-
 .triangle-button {
     background: none;
     border: none;

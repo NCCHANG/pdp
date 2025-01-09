@@ -1,5 +1,23 @@
+#prevDay, #nextDay {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    background: transparent;
+    cursor: pointer;
+}
+
+#prevDay { /*adjust triangle.. */
+    border-width: 15px 20px 15px 0;
+    border-color: transparent white transparent transparent;
+}
+
+#nextDay {
+    border-width: 15px 0 15px 20px;
+    border-color: transparent transparent transparent white;
+}
+
 /* Day View Container */
-#dayViewContainer {
+#dailyCalendarContainer {
     color: white;
     padding: 20px;
     margin: 20px auto;
@@ -13,6 +31,7 @@
 }
 
 #timeline {
+    width: 700px;
     position: relative;
     padding-left: 50px;
     border-left: 2px solid #3A4153;
@@ -28,7 +47,7 @@
     content: "";
     position: absolute;
     top: 0;
-    left: -60px;
+    left: -67px;
     width: 12px;
     height: 12px;
     background-color: #3b5998;
@@ -41,7 +60,6 @@
     font-family: 'Kadwa', serif;
     font-size: 1.2em;
     color: #B0BEC5;
-    position: absolute;
     left: -40px;
     top: -5px;
 }
@@ -50,7 +68,8 @@
     background-color: #3A4153;
     padding: 15px;
     border-radius: 5px;
-    margin-left: 70px;
+    margin-left: 170px;
+    margin-right: 190px;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1em;
     color: white;
@@ -81,7 +100,7 @@
 }
 
 /* Scrollable Day View */
-#dayViewContainer {
+#dailyCalendarContainer {
     max-height: 600px;
     overflow-y: auto;
 }

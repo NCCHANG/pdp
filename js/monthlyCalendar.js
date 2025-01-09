@@ -1,8 +1,8 @@
 let currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 
-const yearlyCalendarContainer = document.getElementById("monthlyCalendarContainer");
-const yearDisplay = document.getElementById("monthDisplay");
+const monthlyCalendarContainer = document.getElementById("monthlyCalendarContainer");
+const monthDisplay = document.getElementById("monthDisplay");
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -21,7 +21,7 @@ function generateMonth(year, month) {
     const title = document.createElement("h1");
     title.className = "Datedisplay";
     title.textContent = `${monthNames[month]}`;
-    yearlyCalendarContainer.appendChild(title);
+    monthlyCalendarContainer.appendChild(title);
 
     // Day names row
     const daysDiv = document.createElement("div");
@@ -54,12 +54,12 @@ function generateMonth(year, month) {
 }
 
 function generateMonthCalendar(year, month) {
-    yearlyCalendarContainer.innerHTML = "";
+    monthlyCalendarContainer.innerHTML = "";
 
     const monthCalendar = generateMonth(year, month);
-    yearlyCalendarContainer.appendChild(monthCalendar);
+    monthlyCalendarContainer.appendChild(monthCalendar);
 
-    yearDisplay.textContent = `${monthNames[month]}`;
+    monthDisplay.textContent = `${monthNames[month]}`;
 }
 
 function changeMonth(offset) {
