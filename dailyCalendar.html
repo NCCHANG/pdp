@@ -6,38 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Daily Planner</title>
     <link rel="stylesheet" href="stylesheet/topBar.css">
-    <link rel="stylesheet" href="stylesheet/monthlyCalendar.css">
+    <link rel="stylesheet" href="stylesheet/mediumBar.css">
+    <link rel="stylesheet" href="stylesheet/dailyCalendar.css">
     <script src="js/dailyCalendar.js" defer></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Kadwa:wght@400;700&display=swap'); /*import Jersey 10 font*/
+        @import url('https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap'); /*import Kadwa font*/
     </style>
 </head>
 
 <body>
+    <!-- Top Bar -->
     <div class="TopBar">
         <div id="LeftTopBar">
-            <a id="pdpTitle" href="dailyCalendar.html">Personal Daily Planner</a>
+            <a id="pdpTitle" href="monthlyCalendar.html">Personal Daily Planner</a>
             <a id="slash">|</a>
             <a id="about" href="#">About</a> <!-- Add link later -->
         </div>
-        <div id="RightTopBar"></div>
+        <div id="RightTopBar">
+            <div class="iconBorder"><img src="./images/UserIcon.png" alt="UserIcon"></div>
+        </div>
     </div>
 
+    <!-- Medium Bar -->
     <div class="mediumBar">
         <div id="LeftMediumBar">
             <button id="prevDay" class="triangle-button left" onclick="changeDay(-1)"></button>
-            <h1 id="Datedisplay">December</h1>
+            <h1 id="dayDisplay">January 1, 2025</h1>
             <button id="nextDay" class="triangle-button right" onclick="changeDay(1)"></button>
         </div>
         <div id="RightMediumBar">
             <div class="button-container">
-                <a href="day.html"><button id="DayButton">Day</button></a>
+                <a href="dailyCalendar.html"><button id="DayButton">Day</button></a>
                 <a href="monthlyCalendar.html"><button id="MonthButton">Month</button></a>
                 <a href="yearlyCalendar.html"><button id="YearButton">Year</button></a>
             </div>
         </div>
     </div>
 
-    <div id="dailyCalendarContainer"></div>
+    <div id="dayViewContainer">
+        <div id="timeline"></div>
+        <button id="addTaskButton">+ Add Task</button>
+    </div>
 </body>
 </html>

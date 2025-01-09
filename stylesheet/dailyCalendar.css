@@ -1,22 +1,87 @@
-.tasks-container {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #2D323F;
+/* Day View Container */
+#dayViewContainer {
     color: white;
-    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #2D323F;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.tasks-container h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+#timeline {
+    position: relative;
+    padding-left: 50px;
+    border-left: 2px solid #3A4153;
 }
 
-#tasks-list {
-    list-style: none;
-    padding: 0;
+/* Time Slot Styling */
+#timeline .time-slot {
+    position: relative;
+    margin-bottom: 20px;
 }
 
-#tasks-list li {
-    margin: 5px 0;
+#timeline .time-slot::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60px;
+    width: 12px;
+    height: 12px;
+    background-color: #3b5998;
+    border-radius: 50%;
+    border: 10px solid #2D323F;
+    z-index: 2;
+}
+
+#timeline .time-slot .hour {
+    font-family: 'Kadwa', serif;
     font-size: 1.2em;
+    color: #B0BEC5;
+    position: absolute;
+    left: -40px;
+    top: -5px;
+}
+
+#timeline .time-slot .task {
+    background-color: #3A4153;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 70px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+#timeline .time-slot .task:hover {
+    background-color: #4A5163;
+}
+
+/* Add Task Button */
+#addTaskButton {
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 20px auto 0;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+#addTaskButton:hover {
+    background-color: #2a4371;
+}
+
+/* Scrollable Day View */
+#dayViewContainer {
+    max-height: 600px;
+    overflow-y: auto;
 }
