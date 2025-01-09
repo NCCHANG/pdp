@@ -37,7 +37,7 @@ function generateMonth(year, month) {
     // Empty spaces before the first day of the month
     for (let i = 0; i < firstDay; i++) {
         const emptyCell = document.createElement("div");
-        emptyCell.className = "day";
+        emptyCell.className = "emptyCell";
         daysDiv.appendChild(emptyCell);
     }
 
@@ -59,7 +59,7 @@ function generateMonthCalendar(year, month) {
     const monthCalendar = generateMonth(year, month);
     monthlyCalendarContainer.appendChild(monthCalendar);
 
-    monthDisplay.textContent = `${monthNames[month]}`;
+    monthDisplay.textContent = `${monthNames[month]}, ${year}`;
 }
 
 function changeMonth(offset) {
