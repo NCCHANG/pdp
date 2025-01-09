@@ -1,4 +1,12 @@
 let currentDate = new Date();
+const options = { year: "numeric", month: "long", day: "numeric" }; //display format
+const dayDisplay = document.getElementById("dayDisplay");
+if(sessionStorage.getItem("storageMonth=>Day")) {
+    dayDisplay.textContent = sessionStorage.getItem("storageMonth=>Day");
+    sessionStorage.removeItem("storageMonth=>Day")
+} else {
+    dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
+}
 
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
@@ -55,7 +63,6 @@ function changeDay(offset) {
     currentDate.setDate(currentDate.getDate() + offset);
 
     // Update the displayed date
-    const options = { year: "numeric", month: "long", day: "numeric" };
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
 
     // Clear and regenerate the timeline for the new date

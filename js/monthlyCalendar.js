@@ -73,8 +73,8 @@ function changeMonth(offset) {
         currentMonth = 11;
         currentYear--;
     }
-
     generateMonthCalendar(currentYear, currentMonth);
+    addDaysEventListener();
 }
 //drop down bar
 document.querySelector(".iconBorder").addEventListener("click",displayDropdown);
@@ -93,3 +93,14 @@ function logOut() {
 //---------------
 // Initialize the calendar
 generateMonthCalendar(currentYear, currentMonth);
+addDaysEventListener();
+
+function addDaysEventListener(){
+const daysDiv = document.getElementsByClassName("day");
+for(let i = 0; i < daysDiv.length;i++) {
+    daysDiv[i].addEventListener("click",()=>{
+        sessionStorage.setItem("storageMonth=>Day",`${monthNames[currentMonth]} ${daysDiv[i].innerHTML}, ${currentYear}`)
+        window.location.href = "dailyCalendar.html";
+    })
+}
+}
