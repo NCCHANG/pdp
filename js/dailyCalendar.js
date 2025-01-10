@@ -1,14 +1,14 @@
-let currentDate;
+let currentDate = new Date();
 const options = { year: "numeric", month: "long", day: "numeric" }; //display format
 const dayDisplay = document.getElementById("dayDisplay");
 
 //sync with tdy or redirect date from month/year
 if(sessionStorage.getItem("storageRedirectDate")) {
-    currentDate = new Date(`${sessionStorage.getItem("storageRedirectDate")} 00:00:00`);
+    currentDate = new Date(`${sessionStorage.getItem("storageRedirectDate")} 16:00:00`);
     dayDisplay.textContent = sessionStorage.getItem("storageRedirectDate");
     sessionStorage.removeItem("storageRedirectDate")
 } else {
-    currentDate = new Date();
+    currentDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000); //convert utc to malaysia time
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
 }
 
@@ -90,5 +90,6 @@ function logOut() {
 //--------------------
 // Initialize the timeline for the current date
 const formattedDate = currentDate.toISOString().split("T")[0];
+console.log(currentDate.toISOString().split("T"));
 const dayTasks = tasks.filter(t => t.date === formattedDate);
 generateTimeline(dayTasks);
