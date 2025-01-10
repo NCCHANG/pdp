@@ -1,9 +1,9 @@
 let currentDate = new Date();
 const options = { year: "numeric", month: "long", day: "numeric" }; //display format
 const dayDisplay = document.getElementById("dayDisplay");
-if(sessionStorage.getItem("storageMonth=>Day")) {
-    dayDisplay.textContent = sessionStorage.getItem("storageMonth=>Day");
-    sessionStorage.removeItem("storageMonth=>Day")
+if(sessionStorage.getItem("storageRedirectDate")) {
+    dayDisplay.textContent = sessionStorage.getItem("storageRedirectDate");
+    sessionStorage.removeItem("storageRedirectDate")
 } else {
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
 }

@@ -66,6 +66,7 @@ function changeYear(offset) {  //onclick -1 / +1
     currentYear += offset; // Increment or decrement the year // on click
     yearDisplay.textContent = currentYear;
     generateYearCalendar(currentYear);
+    addDaysEventListener();
 }
 // drop down bar
 document.querySelector(".iconBorder").addEventListener("click",displayDropdown);
@@ -83,3 +84,20 @@ function logOut() {
 }
 //------------------
 generateYearCalendar(currentYear);
+addDaysEventListener();
+
+//addeventlistener for every btn
+function addDaysEventListener(){
+    const daysDiv = document.getElementsByClassName("day");
+    for(let i = 0; i < daysDiv.length;i++) {
+        const monthOfTheDay = daysDiv[i].closest(".month").querySelector("h3");
+        daysDiv[i].addEventListener("click",()=>{
+            console.log(monthOfTheDay.textContent);
+            console.log(currentYear);
+            console.log(daysDiv[i].textContent);
+            sessionStorage.setItem("storageRedirectDate",
+                `${monthOfTheDay.textContent} ${daysDiv[i].textContent}, ${currentYear}`);
+            window.location.href = "dailyCalendar.html"
+        })
+    }
+}

@@ -99,7 +99,7 @@ function addDaysEventListener(){
 const daysDiv = document.getElementsByClassName("day");
 for(let i = 0; i < daysDiv.length;i++) {
     daysDiv[i].addEventListener("click",()=>{
-        sessionStorage.setItem("storageMonth=>Day",`${monthNames[currentMonth]} ${daysDiv[i].innerHTML}, ${currentYear}`)
+        sessionStorage.setItem("storageRedirectDate",`${monthNames[currentMonth]} ${daysDiv[i].innerHTML}, ${currentYear}`)
         window.location.href = "dailyCalendar.html";
     })
 }
