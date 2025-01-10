@@ -1,10 +1,14 @@
-let currentDate = new Date();
+let currentDate;
 const options = { year: "numeric", month: "long", day: "numeric" }; //display format
 const dayDisplay = document.getElementById("dayDisplay");
+
+//sync with tdy or redirect date from month/year
 if(sessionStorage.getItem("storageRedirectDate")) {
+    currentDate = new Date(`${sessionStorage.getItem("storageRedirectDate")} 00:00:00`);
     dayDisplay.textContent = sessionStorage.getItem("storageRedirectDate");
     sessionStorage.removeItem("storageRedirectDate")
 } else {
+    currentDate = new Date();
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
 }
 
