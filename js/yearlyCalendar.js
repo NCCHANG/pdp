@@ -36,7 +36,7 @@ function generateMonth(year, month) {
     //add an empty space before the first day of month
     for (let i = 0; i < firstDay; i++) {
         const emptyCell = document.createElement("div");
-        emptyCell.className = "day";
+        emptyCell.className = "emptyCell";
         daysDiv.appendChild(emptyCell);
     }
 
