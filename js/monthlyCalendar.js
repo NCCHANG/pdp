@@ -1,3 +1,20 @@
+//init firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getFirestore, collection,getDocs,query,where } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBkBwCTHw56P2qs1n_Yl4HVVNhf0wNx1XM",
+  authDomain: "project-daily-planner.firebaseapp.com",
+  projectId: "project-daily-planner",
+  storageBucket: "project-daily-planner.firebasestorage.app",
+  messagingSenderId: "341596285306",
+  appId: "1:341596285306:web:90197e8c4b3bcc181ecec3",
+  measurementId: "G-LDCB4F40NF"
+};
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+//-------------
+
 //check if user logged in
 if(!localStorage.getItem("user")) {
     alert("Please Log In before using the calendar!");
@@ -20,6 +37,9 @@ const dayNames = ["Sunday", "Monday ", "Tuesday", "Wednesday", "Thursday", "Frid
 function generateMonth(year, month) {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
+    //fetch data from firestore
+    
+    //---------------
 
     const monthDiv = document.createElement("div");
     monthDiv.className = "month";
@@ -83,6 +103,13 @@ function changeMonth(offset) {
     generateMonthCalendar(currentYear, currentMonth);
     addDaysEventListener();
 }
+
+document.getElementById("prevMonth").addEventListener("click",()=>{
+    changeMonth(-1);
+})
+document.getElementById("nextMonth").addEventListener("click",()=>{
+    changeMonth(1);
+})
 //drop down bar
 document.querySelector(".iconBorder").addEventListener("click",displayDropdown);
 function displayDropdown() {

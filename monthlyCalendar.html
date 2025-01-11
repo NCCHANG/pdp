@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="stylesheet/topBar.css">
     <link rel="stylesheet" href="stylesheet/mediumBar.css">
     <link rel="stylesheet" href="stylesheet/monthlyCalendar.css">
-    <script src="js/monthlyCalendar.js" defer></script>
+    <script type = "module" src="js/monthlyCalendar.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Kadwa:wght@400;700&display=swap'); /*import Jersey 10 font*/
     </style>
@@ -28,9 +28,9 @@
 
     <div class="mediumBar">
         <div id="LeftMediumBar">
-            <button id="prevMonth" class="triangle-button left" onclick="changeMonth(-1)"></button>
+            <button id="prevMonth" class="triangle-button left"></button>
             <h1 id="monthDisplay"></h1>
-            <button id="nextMonth" class="triangle-button right" onclick="changeMonth(1)"></button>
+            <button id="nextMonth" class="triangle-button right"></button>
         </div>
         <div id="RightMediumBar">
             <div class="button-container">
