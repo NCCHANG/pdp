@@ -43,7 +43,6 @@ function generateTimeline(dayTasks) {
 
     for (let hour = 0; hour < 24; hour++) {
         const formattedHour = `${hour.toString().padStart(2, "0")}:00`;
-        const tasksForHour = dayTasks.filter(t => t.time.startsWith(formattedHour));
     
         // Create time slot
         const timeSlot = document.createElement("div");
