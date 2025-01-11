@@ -38,7 +38,7 @@ submit.addEventListener("click", (event) => {
             const user = userCredential.user;
             const userData = { email: email }; 
 
-            const docRef = doc(db, "users", user.uid);
+            const docRef = doc(db, "users", email);
             setDoc(docRef, userData)
                 .then(() => {
                     alert("Account created successfully!");
