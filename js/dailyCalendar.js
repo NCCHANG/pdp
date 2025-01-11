@@ -31,7 +31,7 @@ dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
     { date: "2025-01-11", time: "09:00", description: "Team Meeting" },
-    { date: "2025-01-11", time: "09:00", description: "Client Call" },
+    { date: "2025-01-11", time: "09:15", description: "Client Call" },
     { date: "2025-01-11", time: "13:00", description: "Lunch Break" },
     { date: "2025-01-11", time: "15:00", description: "Project Review" },
 ];
@@ -54,12 +54,17 @@ function generateTimeline(dayTasks) {
         hourLabel.textContent = formattedHour;
         timeSlot.appendChild(hourLabel);
     
-        tasksForHour.forEach(task => {
-            const taskDiv = document.createElement("div");
-            taskDiv.className = "task";
-            taskDiv.textContent = task.description;
-            timeSlot.appendChild(taskDiv);
-        });
+        for (let minute = 0; minute < 60; minute += 15) { // Increment by 15 minutes for better readability
+            const formattedTime = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+            const tasksForTime = dayTasks.filter(t => t.time === formattedTime);
+      
+            tasksForTime.forEach(task => {
+              const taskDiv = document.createElement("div");
+              taskDiv.className = "task";
+              taskDiv.textContent = task.description;
+              timeSlot.appendChild(taskDiv);
+            });
+        }
     
         timeline.appendChild(timeSlot);
     }
