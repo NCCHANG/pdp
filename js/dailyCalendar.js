@@ -1,3 +1,20 @@
+//init firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getFirestore, collection,getDocs,query,where } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBkBwCTHw56P2qs1n_Yl4HVVNhf0wNx1XM",
+  authDomain: "project-daily-planner.firebaseapp.com",
+  projectId: "project-daily-planner",
+  storageBucket: "project-daily-planner.firebasestorage.app",
+  messagingSenderId: "341596285306",
+  appId: "1:341596285306:web:90197e8c4b3bcc181ecec3",
+  measurementId: "G-LDCB4F40NF"
+};
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+//-------------
+
 let currentDate = new Date();
 const options = { year: "numeric", month: "long", day: "numeric" }; //display format
 const dayDisplay = document.getElementById("dayDisplay");
@@ -6,12 +23,12 @@ const dayDisplay = document.getElementById("dayDisplay");
 if(sessionStorage.getItem("storageRedirectDate")) {
     currentDate = new Date(`${sessionStorage.getItem("storageRedirectDate")} 16:00:00`);
     dayDisplay.textContent = sessionStorage.getItem("storageRedirectDate");
-    sessionStorage.removeItem("storageRedirectDate")
+    sessionStorage.removeItem("storageRedirectDate");
 } else {
-    currentDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000); //convert utc to malaysia time
-    dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
+currentDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000);
+ //convert utc to malaysia time
+dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
 }
-
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
     { date: "2025-01-11", time: "09:00", description: "Team Meeting" },
@@ -58,6 +75,7 @@ function changeDay(offset) {
     const dayTasks = tasks.filter(t => t.date === formattedDate); // Filter tasks by current date
     generateTimeline(dayTasks); // Pass filtered tasks to the timeline
 }
+//add eventlistener for left and right arrow change day
 
 document.getElementById("addTaskButton").addEventListener("click", () => {
     const taskTime = prompt("Enter task time (HH:MM, 24-hour format):");
@@ -90,6 +108,14 @@ function logOut() {
 //--------------------
 // Initialize the timeline for the current date
 const formattedDate = currentDate.toISOString().split("T")[0];
-console.log(currentDate.toISOString().split("T"));
+//fetch every tasks of user & push to tasks
+const colRef = collection(firestore,"users",localStorage.getItem("user"),"tasks");
+const getCol = await getDocs(colRef);
+getCol.forEach(doc => {
+    const data = doc.data();
+    tasks.push({date:data.date, time:data.StartTime, description:data.Description})
+})
+console.log(currentDate);
+
 const dayTasks = tasks.filter(t => t.date === formattedDate);
 generateTimeline(dayTasks);
