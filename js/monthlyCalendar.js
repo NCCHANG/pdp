@@ -1,3 +1,10 @@
+//check if user logged in
+if(!localStorage.getItem("user")) {
+    alert("Please Log In before using the calendar!");
+    window.location.href = "login.html";
+}
+//--------------
+
 let currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 

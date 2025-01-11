@@ -1,6 +1,6 @@
 //init firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getFirestore, collection,getDocs,query,where } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getFirestore, collection,getDocs,addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBkBwCTHw56P2qs1n_Yl4HVVNhf0wNx1XM",
@@ -15,12 +15,23 @@ const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 //-------------
 
+//check if user logged in
+if(!localStorage.getItem("user")) {
+    alert("Please Log In before using the calendar!");
+    window.location.href = "login.html";
+}
+//--------------
+
 let currentDate = new Date();
 const options = { timeZone: 'Asia/Kuala_Lumpur', year: "numeric", month: "long", day: "numeric" }; //display format
 const dayDisplay = document.getElementById("dayDisplay");
 
 //sync with tdy or redirect date from month/year
-if(sessionStorage.getItem("storageRedirectDate")) {
+if(sessionStorage.getItem("storageRedirectDate")==currentDate.toLocaleDateString('en-US', options)) { //if redirect date is tdy
+    dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
+    sessionStorage.removeItem("storageRedirectDate");
+}
+else if(sessionStorage.getItem("storageRedirectDate")) {
     currentDate = new Date(`${sessionStorage.getItem("storageRedirectDate")} 16:00:00`);
     dayDisplay.textContent = sessionStorage.getItem("storageRedirectDate");
     sessionStorage.removeItem("storageRedirectDate");
@@ -88,9 +99,14 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
     const taskDate = currentDate.toISOString().split("T")[0];
 
     if (taskTime && taskDescription) {
-        tasks.push({ date: taskDate, time: taskTime, description: taskDescription });
-        const dayTasks = tasks.filter(t => t.date === taskDate);
-        generateTimeline(dayTasks);
+        const taskCol = collection(firestore,"users",localStorage.getItem("user"),"tasks");
+        addDoc(taskCol, {
+            Description:taskDescription,
+            StartTime:taskTime,
+            date:taskDate,
+        }).then((docRef) => {
+            location.reload();
+          })
     } else {
         alert("Both time and description are required!");
     }
