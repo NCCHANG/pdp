@@ -16,7 +16,7 @@ const firestore = getFirestore(app);
 //-------------
 
 let currentDate = new Date();
-const options = { year: "numeric", month: "long", day: "numeric" }; //display format
+const options = { timeZone: 'Asia/Kuala_Lumpur', year: "numeric", month: "long", day: "numeric" }; //display format
 const dayDisplay = document.getElementById("dayDisplay");
 
 //sync with tdy or redirect date from month/year
@@ -25,9 +25,8 @@ if(sessionStorage.getItem("storageRedirectDate")) {
     dayDisplay.textContent = sessionStorage.getItem("storageRedirectDate");
     sessionStorage.removeItem("storageRedirectDate");
 } else {
-currentDate = new Date(currentDate.getTime() - currentDate.getTimezoneOffset() * 60000);
  //convert utc to malaysia time
-dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
+dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 }
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
