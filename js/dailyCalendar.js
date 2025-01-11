@@ -76,7 +76,13 @@ function changeDay(offset) {
     generateTimeline(dayTasks); // Pass filtered tasks to the timeline
 }
 //add eventlistener for left and right arrow change day
-
+document.getElementById("prevDay").addEventListener("click",()=>{
+    changeDay(-1);
+})
+document.getElementById("nextDay").addEventListener("click",()=>{
+    changeDay(1);
+})
+//----------------
 document.getElementById("addTaskButton").addEventListener("click", () => {
     const taskTime = prompt("Enter task time (HH:MM, 24-hour format):");
     const taskDescription = prompt("Enter task description:");
