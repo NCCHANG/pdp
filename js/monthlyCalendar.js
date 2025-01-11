@@ -34,13 +34,27 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 const dayNames = ["Sunday", "Monday ", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+const tasksDate = [{month:-1,day:-1,year:-1}];
+ //fetch data from firestore
+ async function initTasksDate() {
+    const taskColRef = collection(firestore,"users",localStorage.getItem("user"),"tasks");
+    const allTask = await getDocs(taskColRef);
+    allTask.forEach(doc=>{
+        const dataDate = doc.data().date;//every task date
+        tasksDate.push({month:parseInt(dataDate.substring(5,7))
+            ,day:parseInt(dataDate.substring(8,10))
+            ,year:parseInt(dataDate.substring(0,4))
+        })
+    })
+ }
+ //---------------
+
 function generateMonth(year, month) {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    //fetch data from firestore
-    
-    //---------------
 
+    const filterYrMnth = tasksDate.filter(t => t.year === year && t.month === month+1);
+    
     const monthDiv = document.createElement("div");
     monthDiv.className = "month";
 
@@ -70,6 +84,8 @@ function generateMonth(year, month) {
 
     // Days of the month
     for (let day = 1; day <= daysInMonth; day++) {
+        const filterDay = tasksDate.filter(t => t.day == day)
+        filterDay.length;
         const dayDiv = document.createElement("div");
         dayDiv.className = "day";
         dayDiv.textContent = day;
@@ -126,8 +142,10 @@ function logOut() {
 }
 //---------------
 // Initialize the calendar
-generateMonthCalendar(currentYear, currentMonth);
-addDaysEventListener();
+initTasksDate().then(()=>{
+    generateMonthCalendar(currentYear, currentMonth);
+    addDaysEventListener();
+})
 
 function addDaysEventListener(){
 const daysDiv = document.getElementsByClassName("day");
