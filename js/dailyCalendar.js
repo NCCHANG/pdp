@@ -42,9 +42,13 @@ dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
     { date: "2025-01-11", time: "09:00", description: "Team Meeting" },
-    { date: "2025-01-11", time: "09:00", description: "Client Call" },
+    { date: "2025-01-11", time: "09:11", description: "Client Call" },
     { date: "2025-01-11", time: "13:00", description: "Lunch Break" },
     { date: "2025-01-11", time: "15:00", description: "Project Review" },
+    { date: "2025-01-12", time: "07:00", description: "Team Meeting" },
+    { date: "2025-01-12", time: "07:15", description: "Client Call" },
+    { date: "2025-01-12", time: "16:00", description: "Lunch Break" },
+    { date: "2025-01-12", time: "18:00", description: "Project Review" },
 ];
 
 // Function to generate the timeline
@@ -54,7 +58,6 @@ function generateTimeline(dayTasks) {
 
     for (let hour = 0; hour < 24; hour++) {
         const formattedHour = `${hour.toString().padStart(2, "0")}:00`;
-        const tasksForHour = dayTasks.filter(t => t.time.startsWith(formattedHour));
     
         // Create time slot
         const timeSlot = document.createElement("div");
@@ -65,12 +68,17 @@ function generateTimeline(dayTasks) {
         hourLabel.textContent = formattedHour;
         timeSlot.appendChild(hourLabel);
     
-        tasksForHour.forEach(task => {
-            const taskDiv = document.createElement("div");
-            taskDiv.className = "task";
-            taskDiv.textContent = task.description;
-            timeSlot.appendChild(taskDiv);
-        });
+        for (let minute = 0; minute < 60; minute += 1) { 
+            const formattedTime = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+            const tasksForTime = dayTasks.filter(t => t.time === formattedTime);
+      
+            tasksForTime.forEach(task => {
+              const taskDiv = document.createElement("div");
+              taskDiv.className = "task";
+              taskDiv.textContent = task.description;
+              timeSlot.appendChild(taskDiv);
+            });
+        }
     
         timeline.appendChild(timeSlot);
     }
