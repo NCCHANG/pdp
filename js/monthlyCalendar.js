@@ -93,7 +93,7 @@ function generateMonth(year, month) {
         dayDiv.textContent = day;
         const tasksAmountDiv = document.createElement("div");
         tasksAmountDiv.className = "tasksAmount";
-        tasksAmountDiv.textContent = filterDay.length;
+        tasksAmountDiv.textContent = `${filterDay.length} tasks`;
        
         container.appendChild(dayDiv);
         container.appendChild(tasksAmountDiv);
