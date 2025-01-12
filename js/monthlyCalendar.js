@@ -84,7 +84,7 @@ function generateMonth(year, month) {
 
     // Days of the month
     for (let day = 1; day <= daysInMonth; day++) {
-        const filterDay = tasksDate.filter(t => t.day == day)
+        const filterDay = filterYrMnth.filter(t => t.day == day)
         
         const container = document.createElement("div");
         container.className = "dayContainer";
