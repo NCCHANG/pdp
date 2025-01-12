@@ -1,6 +1,6 @@
 //init firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getFirestore, collection,getDocs,addDoc,getDoc,doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getFirestore, collection,getDocs,addDoc,updateDoc,doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBkBwCTHw56P2qs1n_Yl4HVVNhf0wNx1XM",
@@ -105,6 +105,18 @@ function taskAddEventListener() {
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
             updateTaskBtn.classList.remove("hide");
+            // addeventlistener to update
+            document.getElementById("updateTaskButton").addEventListener("click",()=>{
+                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
+                updateDoc(taskRef,{
+                    description: descriptionDiv.textContent,
+                    StartTime: startTimeDiv.textContent,
+                    date:  dateDiv.textContent
+                }).then(()=>{
+                    alert("Update Successfully!");
+                    window.location.href = "dailyCalendar.html";
+                })
+            })
         })
     }
 }
@@ -117,12 +129,6 @@ document.getElementById("close").addEventListener("click",()=> {
     addTaskBtn.classList.remove("hide"); //show add task button
     manageTaskContainer.classList.add("hide"); //hide manageTaskContainer
     updateTaskBtn.classList.add("hide");
-})
-document.getElementById("updateTaskButton").addEventListener("click",()=>{
-    const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
-    // getDoc(taskRef).then((docSnap) => {
-    //     console.log(docSnap.description);
-    // })
 })
 //----------------------------
 function changeDay(offset) {
