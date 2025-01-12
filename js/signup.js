@@ -36,10 +36,10 @@ submit.addEventListener("click", (event) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            const userData = { email: email }; 
+            const user2F = { twofactor: false }; 
 
             const docRef = doc(db, "users", email);
-            setDoc(docRef, userData)
+            setDoc(docRef, user2F)
                 .then(() => {
                     alert("Account created successfully!");
                     window.location.href = 'login.html';
