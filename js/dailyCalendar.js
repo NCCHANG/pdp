@@ -41,7 +41,7 @@ dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 }
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
-    { date: "-1", time: "-1", description: "-1" },
+    { date: "-1", time: "-1", description: "-1", uid:"-1"},
 ];
 
 // Function to generate the timeline
@@ -69,6 +69,7 @@ function generateTimeline(dayTasks) {
               const taskDiv = document.createElement("div");
               taskDiv.className = "task";
               taskDiv.textContent = task.description;
+              taskDiv.setAttribute("data-uid",task.uid);
               timeSlot.appendChild(taskDiv);
             });
         }
@@ -83,7 +84,45 @@ function hideLoader() {
     const loaderContainer = document.getElementById("loaderContainer");
     loaderContainer.style.display = "none";
 }
-
+//manage task
+function taskAddEventListener() {
+    const tasksDiv = document.getElementsByClassName("task");
+    const mainContainer = document.getElementById("dailyCalendarContainer");
+    const addTaskBtn = document.getElementById("addTaskButton");
+    const updateTaskBtn = document.getElementById("updateTaskButton");
+    const manageTaskContainer = document.getElementById("manageTaskContainer");
+    for(let i = 0; i < tasksDiv.length; i++) {
+        tasksDiv[i].addEventListener("click", ()=> { //add event listener for every task
+            sessionStorage.setItem("taskUid",tasksDiv[i].getAttribute("data-uid"));
+            const task = tasks.find(event => tasksDiv[i].textContent === event.description);
+            let descriptionDiv = document.getElementById("description");
+            descriptionDiv.textContent = `Description: ${task.description}`;
+            let startTimeDiv = document.getElementById("startTime");
+            startTimeDiv.textContent = `Start Time: ${task.time}`
+            let dateDiv = document.getElementById("date");
+            dateDiv.textContent = `Date: ${task.date}`
+            mainContainer.classList.add("hide") //hide mainContainer
+            addTaskBtn.classList.add("hide") //hide add task button
+            manageTaskContainer.classList.remove("hide");//show manage task container
+            updateTaskBtn.classList.remove("hide");
+        })
+    }
+}
+document.getElementById("close").addEventListener("click",()=> {
+    const mainContainer = document.getElementById("dailyCalendarContainer");
+    const manageTaskContainer = document.getElementById("manageTaskContainer");
+    const addTaskBtn = document.getElementById("addTaskButton");
+    const updateTaskBtn = document.getElementById("updateTaskButton");
+    mainContainer.classList.remove("hide"); //show mainContainer
+    addTaskBtn.classList.remove("hide"); //show add task button
+    manageTaskContainer.classList.add("hide"); //hide manageTaskContainer
+    updateTaskBtn.classList.add("hide");
+    sessionStorage.removeItem("taskUid");
+})
+document.getElementById("updateTaskButton").addEventListener("click",()=>{
+    const collectionRef = collection(firestore,"users",localStorage.getItem("user"),"tasks");
+})
+//----------------------------
 function changeDay(offset) {
     currentDate.setDate(currentDate.getDate() + offset);
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
@@ -92,6 +131,7 @@ function changeDay(offset) {
     const formattedDate = currentDate.toISOString().split("T")[0];
     const dayTasks = tasks.filter(t => t.date === formattedDate); // Filter tasks by current date
     generateTimeline(dayTasks); // Pass filtered tasks to the timeline
+    taskAddEventListener();
 }
 //add eventlistener for left and right arrow change day
 document.getElementById("prevDay").addEventListener("click",()=>{
@@ -142,9 +182,9 @@ const colRef = collection(firestore,"users",localStorage.getItem("user"),"tasks"
 const getCol = await getDocs(colRef);
 getCol.forEach(doc => {
     const data = doc.data();
-    tasks.push({date:data.date, time:data.StartTime, description:data.Description})
+    tasks.push({date:data.date, time:data.StartTime, description:data.Description, uid:doc.id})
 })
-
-const dayTasks = tasks.filter(t => t.date === formattedDate);
+const dayTasks = tasks.filter(t => t.date === formattedDate); //filter tasks to only today task
 generateTimeline(dayTasks);
+taskAddEventListener();
 hideLoader();

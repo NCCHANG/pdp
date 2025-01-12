@@ -29,7 +29,45 @@
     flex-direction: column;
     gap: 20px;
 }
+/* manage task */
+#dailyCalendarContainer.hide {
+    display: none;
+}
+#addTaskButton.hide {
+    display: none;
+}
 
+#manageTaskContainer.hide {
+    display: none;
+}
+#manageTaskContainer{
+    display:flex;
+    justify-content: center;
+}
+#manageTask {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border: 1px solid white;
+    color: white;
+}
+#updateTaskButton.hide {
+    display: none;
+}
+#updateTaskButton {
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5px;
+}
+#close {
+    margin-left: auto;
+    border-width: 0px;
+    background-color: #2D323F;
+    color: white;
+    text-shadow: 1px 0px;
+    cursor: pointer;
+}
+/* ---------------- */
 #timeline {
     width: 700px;
     position: relative;
