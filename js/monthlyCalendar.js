@@ -128,6 +128,13 @@ function changeMonth(offset) {
     addDaysEventListener();
 }
 
+function hideLoader() {
+    const loader = document.querySelector(".loader");
+    loader.style.display = "none";
+    const loaderContainer = document.getElementById("loaderContainer");
+    loaderContainer.style.display = "none";
+}
+
 document.getElementById("prevMonth").addEventListener("click",()=>{
     changeMonth(-1);
 })
@@ -153,6 +160,7 @@ function logOut() {
 initTasksDate().then(()=>{
     generateMonthCalendar(currentYear, currentMonth);
     addDaysEventListener();
+    hideLoader();
 })
 
 function addDaysEventListener(){
