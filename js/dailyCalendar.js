@@ -77,6 +77,13 @@ function generateTimeline(dayTasks) {
     }
 }
 
+function hideLoader() {
+    const loader = document.querySelector(".loader");
+    loader.style.display = "none";
+    const loaderContainer = document.getElementById("loaderContainer");
+    loaderContainer.style.display = "none";
+}
+
 function changeDay(offset) {
     currentDate.setDate(currentDate.getDate() + offset);
     dayDisplay.textContent = currentDate.toLocaleDateString(undefined, options);
@@ -137,7 +144,7 @@ getCol.forEach(doc => {
     const data = doc.data();
     tasks.push({date:data.date, time:data.StartTime, description:data.Description})
 })
-console.log(currentDate);
 
 const dayTasks = tasks.filter(t => t.date === formattedDate);
 generateTimeline(dayTasks);
+hideLoader();
