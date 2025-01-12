@@ -32,6 +32,11 @@
     background-color: #2D323F;
 }
 
+#monthlyCalendarContainer .dayContainer {
+    max-width: 150px;
+    max-height: 140px;
+}
+
 #monthlyCalendarContainer .Datedisplay {
     font-family: 'Jersey 10', serif;
     font-size: 90px;
@@ -56,7 +61,7 @@
 #monthlyCalendarContainer .day-name {
     background-color: #2D323F;
     padding: 10px;
-    text-align: left;
+    text-align: center;
     font-family: Helvetica, sans-serif,serif;
     font-weight: bold;
     border-bottom: 2px solid #3A4153;
@@ -64,12 +69,21 @@
 
 #monthlyCalendarContainer .day {
     background-color: #2D323F;
-    padding: 20px;
-    padding-top: 75px;
+    padding-bottom: 2px;
     text-align: right;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#monthlyCalendarContainer .tasksAmount {
+    text-align: right;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 0px 5px;
+    display: flex;
+    padding: 5px 5px;
+    background-color: #384d7c;
 }
 
 #monthlyCalendarContainer .day:hover {
@@ -77,3 +91,10 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
+
+#monthlyCalendarContainer .tasksAmount:hover {
+    background-color: #2e50a7;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
