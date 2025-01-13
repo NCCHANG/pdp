@@ -34,16 +34,18 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 
 const dayNames = ["Sunday", "Monday ", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const tasksDate = [{month:-1,day:-1,year:-1}];
+const tasksDate = [{month:-1,day:-1,year:-1,repeat:-1}];
  //fetch data from firestore
  async function initTasksDate() {
     const taskColRef = collection(firestore,"users",localStorage.getItem("user"),"tasks");
     const allTask = await getDocs(taskColRef);
     allTask.forEach(doc=>{
         const dataDate = doc.data().date;//every task date
-        tasksDate.push({month:parseInt(dataDate.substring(5,7))
+        tasksDate.push({
+            month:parseInt(dataDate.substring(5,7))
             ,day:parseInt(dataDate.substring(8,10))
             ,year:parseInt(dataDate.substring(0,4))
+            ,repeat:doc.data().repeat
         })
     })
  }
@@ -53,7 +55,7 @@ function generateMonth(year, month) {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    const filterYrMnth = tasksDate.filter(t => t.year === year && t.month === month+1);
+    const filterYrMnth = tasksDate.filter(t => (t.year === year && t.month === month+1) || t.repeat ==="daily" || t.repeat ==="monthly" || (t.month === month + 1 && t.repeat === "yearly"));
     
     const monthDiv = document.createElement("div");
     monthDiv.className = "month";
@@ -84,7 +86,7 @@ function generateMonth(year, month) {
 
     // Days of the month
     for (let day = 1; day <= daysInMonth; day++) {
-        const filterDay = filterYrMnth.filter(t => t.day == day)
+        const filterDay = filterYrMnth.filter(t => (t.day === day) || t.repeat === "daily")
         
         const container = document.createElement("div");
         container.className = "dayContainer";

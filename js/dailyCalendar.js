@@ -150,8 +150,9 @@ function taskAddEventListener() {
             })
             //addeventlistener to remove
             document.getElementById("removeTaskButton").addEventListener("click",()=>{
+                showLoader();
                 const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",task.uid);
-                deleteDoc(taskRef).then(()=>{alert("Task Deleted");window.location.href = "dailyCalendar.html";});
+                deleteDoc(taskRef).then(()=>{hideLoader();alert("Task Deleted");window.location.href = "dailyCalendar.html";});
             })
 
             // addeventlistener to update
