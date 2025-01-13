@@ -41,7 +41,7 @@ dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 }
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
-    { date: "-1", time: "-1", description: "-1", priority:"-1",completed:"-1", uid:"-1"},
+    { date: "-1", time: "-1", description: "-1", priority:"-1",completed:"-1",repeat:"-1", uid:"-1"},
 ];
 
 // Function to generate the timeline
@@ -203,10 +203,11 @@ function changeDay(offset) {
 
     // Clear and regenerate the timeline for the new date
     const formattedDate = currentDate.toISOString().split("T")[0];
-    const dayTasks = tasks.filter(t => t.date === formattedDate); // Filter tasks by current date
+    const dayTasks = tasks.filter(t => (t.date === formattedDate) || (t.date.substring(4) === formattedDate.substring(4) && t.repeat === "yearly") ||
+    (t.date.substring(8) === formattedDate.substring(8) && t.repeat === "monthly") || t.repeat === "daily"); // Filter tasks by current date
     generateTimeline(dayTasks); // Pass filtered tasks to the timeline
     taskAddEventListener();
-}
+}//2025-01-24
 //add eventlistener for left and right arrow change day
 document.getElementById("prevDay").addEventListener("click",()=>{
     changeDay(-1);
@@ -219,9 +220,10 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
     const taskTime = prompt("Enter task time (HH:MM, 24-hour format):");
     const taskDescription = prompt("Enter task description:");
     const priority = prompt("Priority: (high,medium,low)");
+    const repeat = prompt("Repeat: (yearly,monthly,daily, none)");
     const taskDate = currentDate.toISOString().split("T")[0];
 
-    if (taskTime && taskDescription && priority && taskDate) {
+    if (taskTime && taskDescription && priority && taskDate && repeat) {
         const taskCol = collection(firestore,"users",localStorage.getItem("user"),"tasks");
         addDoc(taskCol, {
             Description:taskDescription,
@@ -229,6 +231,7 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
             date:taskDate,
             priority:priority,
             completed:false,
+            repeat:repeat,
         }).then((docRef) => {
             alert
             location.reload();
@@ -260,9 +263,11 @@ const colRef = collection(firestore,"users",localStorage.getItem("user"),"tasks"
 const getCol = await getDocs(colRef);
 getCol.forEach(doc => {
     const data = doc.data();
-    tasks.push({date:data.date, time:data.StartTime, description:data.Description, priority:data.priority,completed:data.completed, uid:doc.id})
+    tasks.push({date:data.date, time:data.StartTime, description:data.Description, priority:data.priority,completed:data.completed,repeat:data.repeat, uid:doc.id})
 })
-const dayTasks = tasks.filter(t => t.date === formattedDate); //filter tasks to only today task
+const dayTasks = tasks.filter(t => (t.date === formattedDate) || (t.date.substring(4) === formattedDate.substring(4) && t.repeat === "yearly") ||
+(t.date.substring(8) === formattedDate.substring(8) && t.repeat === "monthly") ||t.repeat === "daily"); //filter tasks to this day task only
+
 generateTimeline(dayTasks);
 taskAddEventListener();
 hideLoader();
