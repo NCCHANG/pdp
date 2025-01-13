@@ -1,6 +1,6 @@
 //init firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getFirestore, collection,getDocs,addDoc,updateDoc,doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getFirestore, collection,getDocs,addDoc,updateDoc,doc,deleteDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBkBwCTHw56P2qs1n_Yl4HVVNhf0wNx1XM",
@@ -77,13 +77,20 @@ function generateTimeline(dayTasks) {
         timeline.appendChild(timeSlot);
     }
 }
-
+//loader
 function hideLoader() {
     const loader = document.querySelector(".loader");
     loader.style.display = "none";
     const loaderContainer = document.getElementById("loaderContainer");
     loaderContainer.style.display = "none";
 }
+function showLoader() {
+    const loader = document.querySelector(".loader");
+    loader.style.display = "flex";
+    const loaderContainer = document.getElementById("loaderContainer");
+    loaderContainer.style.display = "flex";
+}
+//-----------------------
 //manage task
 function taskAddEventListener() {
     const tasksDiv = document.getElementsByClassName("task");
@@ -105,14 +112,34 @@ function taskAddEventListener() {
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
             updateTaskBtn.classList.remove("hide");
+            //addeventlistener to descriptionDiv, startTimeDiv, dateDiv
+            descriptionDiv.addEventListener("click",()=>{
+                const descriptionInput = prompt("Enter New Description");
+                descriptionDiv.textContent = `Description: ${descriptionInput}`;
+            })
+            startTimeDiv.addEventListener("click",()=>{
+                const startTimeInput = prompt("Enter new task time (HH:MM, 24-hour format):");
+                startTimeInput.textContent = `Start Time: ${startTimeInput}`;
+            })
+            dateDiv.addEventListener("click",()=>{
+                const dateInput = prompt("Enter New Date (YYYY-MM-DD)");
+                dateDiv.textContent = `Date: ${dateInput}`;
+            })
+            //addeventlistener to remove
+            document.getElementById("removeTaskButton").addEventListener("click",()=>{
+                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
+                deleteDoc(taskRef).then(()=>{alert("Task Deleted");window.location.href = "dailyCalendar.html";});
+            })
             // addeventlistener to update
             document.getElementById("updateTaskButton").addEventListener("click",()=>{
+                showLoader();
                 const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
                 updateDoc(taskRef,{
-                    description: descriptionDiv.textContent,
-                    StartTime: startTimeDiv.textContent,
-                    date:  dateDiv.textContent
+                    Description: descriptionDiv.textContent.substring(13),
+                    StartTime: startTimeDiv.textContent.substring(12),
+                    date:  dateDiv.textContent.substring(6)
                 }).then(()=>{
+                    hideLoader();
                     alert("Update Successfully!");
                     window.location.href = "dailyCalendar.html";
                 })
