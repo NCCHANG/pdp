@@ -69,9 +69,6 @@
     border-radius: 2px;
     cursor: pointer;
 }
-#updateTaskButton.hide {
-    display: none;
-}
 #updateTaskButton {
     margin-top: 5px;
     background-color: #3b5898;
