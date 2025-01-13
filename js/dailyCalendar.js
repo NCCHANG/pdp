@@ -41,7 +41,7 @@ dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 }
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
-    { date: "-1", time: "-1", description: "-1", priority:"-1", uid:"-1"},
+    { date: "-1", time: "-1", description: "-1", priority:"-1",completed:"-1", uid:"-1"},
 ];
 
 // Function to generate the timeline
@@ -74,6 +74,9 @@ function generateTimeline(dayTasks) {
                 taskDiv.style.color = "orange";
               } else if (task.priority == "low") {
                 taskDiv.style.color = "#5de651";
+              }
+              if(task.completed) {
+                taskDiv.style.textDecoration = "line-through";
               }
               taskDiv.textContent = task.description;
               taskDiv.setAttribute("data-uid",task.uid);
@@ -117,7 +120,9 @@ function taskAddEventListener() {
             dateDiv.textContent = `Date: ${task.date}`;
             let priorityDiv = document.getElementById("priority");
             priorityDiv.textContent = `Priority: ${task.priority}`;
-
+            const completeCheckbox = document.getElementById("checkbox");
+            if(task.completed) completeCheckbox.checked = true;
+            
             mainContainer.classList.add("hide") //hide mainContainer
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
@@ -153,16 +158,31 @@ function taskAddEventListener() {
             document.getElementById("updateTaskButton").addEventListener("click",()=>{
                 showLoader();
                 const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",task.uid);
-                updateDoc(taskRef,{
-                    Description: descriptionDiv.textContent.substring(13),
-                    StartTime: startTimeDiv.textContent.substring(12),
-                    date:  dateDiv.textContent.substring(6),
-                    priority: priorityDiv.textContent.substring(10)
-                }).then(()=>{
-                    hideLoader();
-                    alert("Update Successfully!");
-                    window.location.href = "dailyCalendar.html";
-                })
+                if(completeCheckbox.checked){
+                    updateDoc(taskRef,{
+                        Description: descriptionDiv.textContent.substring(13),
+                        StartTime: startTimeDiv.textContent.substring(12),
+                        date:  dateDiv.textContent.substring(6),
+                        priority: priorityDiv.textContent.substring(10),
+                        completed:true,
+                    }).then(()=>{
+                        hideLoader();
+                        alert("Update Successfully!");
+                        window.location.href = "dailyCalendar.html";
+                    })
+                } else {
+                    updateDoc(taskRef,{
+                        Description: descriptionDiv.textContent.substring(13),
+                        StartTime: startTimeDiv.textContent.substring(12),
+                        date:  dateDiv.textContent.substring(6),
+                        priority: priorityDiv.textContent.substring(10),
+                        completed:false,
+                    }).then(()=>{
+                        hideLoader();
+                        alert("Update Successfully!");
+                        window.location.href = "dailyCalendar.html";
+                    })
+                }
             })
 
         })
@@ -172,7 +192,6 @@ document.getElementById("close").addEventListener("click",()=> {
     const mainContainer = document.getElementById("dailyCalendarContainer");
     const manageTaskContainer = document.getElementById("manageTaskContainer");
     const addTaskBtn = document.getElementById("addTaskButton");
-    const updateTaskBtn = document.getElementById("updateTaskButton");
     mainContainer.classList.remove("hide"); //show mainContainer
     addTaskBtn.classList.remove("hide"); //show add task button
     manageTaskContainer.classList.add("hide"); //hide manageTaskContainer
@@ -202,18 +221,20 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
     const priority = prompt("Priority: (high,medium,low)");
     const taskDate = currentDate.toISOString().split("T")[0];
 
-    if (taskTime && taskDescription) {
+    if (taskTime && taskDescription && priority && taskDate) {
         const taskCol = collection(firestore,"users",localStorage.getItem("user"),"tasks");
         addDoc(taskCol, {
             Description:taskDescription,
             StartTime:taskTime,
             date:taskDate,
             priority:priority,
+            completed:false,
         }).then((docRef) => {
+            alert
             location.reload();
           })
     } else {
-        alert("Both time and description are required!");
+        alert("Information is not completed!");
     }
 });
 
@@ -239,7 +260,7 @@ const colRef = collection(firestore,"users",localStorage.getItem("user"),"tasks"
 const getCol = await getDocs(colRef);
 getCol.forEach(doc => {
     const data = doc.data();
-    tasks.push({date:data.date, time:data.StartTime, description:data.Description, priority:data.priority, uid:doc.id})
+    tasks.push({date:data.date, time:data.StartTime, description:data.Description, priority:data.priority,completed:data.completed, uid:doc.id})
 })
 const dayTasks = tasks.filter(t => t.date === formattedDate); //filter tasks to only today task
 generateTimeline(dayTasks);
