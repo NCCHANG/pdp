@@ -1,6 +1,6 @@
 //init firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getFirestore, collection,getDocs,addDoc,updateDoc,doc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { getFirestore, collection,getDocs,addDoc,updateDoc,doc,deleteDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBkBwCTHw56P2qs1n_Yl4HVVNhf0wNx1XM",
@@ -105,6 +105,11 @@ function taskAddEventListener() {
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
             updateTaskBtn.classList.remove("hide");
+            //addeventlistener to remove
+            document.getElementById("removeTaskButton").addEventListener("click",()=>{
+                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
+                deleteDoc(taskRef).then(()=>{alert("Task Deleted");window.location.href = "dailyCalendar.html";});
+            })
             // addeventlistener to update
             document.getElementById("updateTaskButton").addEventListener("click",()=>{
                 const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
