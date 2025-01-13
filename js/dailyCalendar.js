@@ -122,12 +122,14 @@ function taskAddEventListener() {
             priorityDiv.textContent = `Priority: ${task.priority}`;
             const completeCheckbox = document.getElementById("checkbox");
             if(task.completed) completeCheckbox.checked = true;
+            let repeatDiv = document.getElementById("repeat");
+            repeatDiv.textContent = `Repeat: ${task.repeat}`;
             
             mainContainer.classList.add("hide") //hide mainContainer
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
 
-            //addeventlistener to descriptionDiv, startTimeDiv, dateDiv, priorityDiv
+            //addeventlistener to descriptionDiv, startTimeDiv, dateDiv, priorityDiv, repeatDiv
             descriptionDiv.addEventListener("click",()=>{
                 const descriptionInput = prompt("Enter New Description");
                 if(descriptionInput)
@@ -148,6 +150,11 @@ function taskAddEventListener() {
                 if(priorityInput)
                 priorityDiv.textContent = `Priority: ${priorityInput}`;
             })
+            repeatDiv.addEventListener("click",()=>{
+                const repeatInput = prompt("Enter New Repeat: (yearly,monthly,daily, none)");
+                if(repeatInput)
+                    repeatDiv.textContent = `Repeat: ${repeatInput}`;
+            })
             //addeventlistener to remove
             document.getElementById("removeTaskButton").addEventListener("click",()=>{
                 showLoader();
@@ -156,7 +163,7 @@ function taskAddEventListener() {
             })
 
             // addeventlistener to update
-            document.getElementById("updateTaskButton").addEventListener("click",()=>{
+            updateTaskBtn.addEventListener("click",()=>{
                 showLoader();
                 const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",task.uid);
                 if(completeCheckbox.checked){
@@ -166,6 +173,7 @@ function taskAddEventListener() {
                         date:  dateDiv.textContent.substring(6),
                         priority: priorityDiv.textContent.substring(10),
                         completed:true,
+                        repeat: repeatDiv.textContent.substring(8),
                     }).then(()=>{
                         hideLoader();
                         alert("Update Successfully!");
@@ -177,6 +185,7 @@ function taskAddEventListener() {
                         StartTime: startTimeDiv.textContent.substring(12),
                         date:  dateDiv.textContent.substring(6),
                         priority: priorityDiv.textContent.substring(10),
+                        repeat: repeatDiv.textContent.substring(8),
                         completed:false,
                     }).then(()=>{
                         hideLoader();
