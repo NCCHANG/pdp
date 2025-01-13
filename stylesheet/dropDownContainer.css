@@ -1,0 +1,40 @@
+/* drop down medium bar  */
+.profileDropDown {
+    display: none;
+}
+.profileSelecting {
+    background-color:#63666f;
+}
+.dropDownContainer {
+    position: fixed;
+    width: 300px;
+    right: 0;
+    top: 85px;
+    padding-right: 40px;
+}
+.showProfileDropDown {
+    display: grid;  
+    color: black;
+    padding: 10px 5px;
+    background-color: #d1d1d1d5;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+/* Log out Button */
+.logout {
+    background-color: #3b5898;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 10px auto 0;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+    background-color: #2a4371;
+}
