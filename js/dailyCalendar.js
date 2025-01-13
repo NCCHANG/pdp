@@ -109,9 +109,9 @@ function taskAddEventListener() {
             document.getElementById("updateTaskButton").addEventListener("click",()=>{
                 const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
                 updateDoc(taskRef,{
-                    description: descriptionDiv.textContent,
-                    StartTime: startTimeDiv.textContent,
-                    date:  dateDiv.textContent
+                    Description: descriptionDiv.textContent.substring(13),
+                    StartTime: startTimeDiv.textContent.substring(12),
+                    date:  dateDiv.textContent.substring(6)
                 }).then(()=>{
                     alert("Update Successfully!");
                     window.location.href = "dailyCalendar.html";
