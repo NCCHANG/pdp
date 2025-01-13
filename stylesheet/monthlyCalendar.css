@@ -92,9 +92,9 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* #monthlyCalendarContainer .tasksAmount:hover {
+#monthlyCalendarContainer .tasksAmount:hover {
     background-color: #2e50a7;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-} */
+}
 

@@ -164,10 +164,11 @@ initTasksDate().then(()=>{
 })
 
 function addDaysEventListener(){
-const daysDiv = document.getElementsByClassName("day");
-for(let i = 0; i < daysDiv.length;i++) {
-    daysDiv[i].addEventListener("click",()=>{
-        sessionStorage.setItem("storageRedirectDate",`${monthNames[currentMonth]} ${daysDiv[i].innerHTML}, ${currentYear}`)
+const dayContainerDiv = document.getElementsByClassName("dayContainer");
+for(let i = 0; i < dayContainerDiv.length;i++) {
+    const day = dayContainerDiv[i].querySelector(".day");
+    dayContainerDiv[i].addEventListener("click",()=>{
+        sessionStorage.setItem("storageRedirectDate",`${monthNames[currentMonth]} ${day.innerHTML}, ${currentYear}`)
         window.location.href = "dailyCalendar.html";
     })
 }
