@@ -41,7 +41,7 @@ dayDisplay.textContent = currentDate.toLocaleDateString('en-US', options);
 }
 // Sample tasks (you can replace this with tasks from your data source)
 const tasks = [
-    { date: "-1", time: "-1", description: "-1", uid:"-1"},
+    { date: "-1", time: "-1", description: "-1", priority:"-1", uid:"-1"},
 ];
 
 // Function to generate the timeline
@@ -68,6 +68,13 @@ function generateTimeline(dayTasks) {
             tasksForTime.forEach(task => {
               const taskDiv = document.createElement("div");
               taskDiv.className = "task";
+              if(task.priority == "high") { //change task description color according to priority
+                taskDiv.style.color = "#ff1e00";
+              } else if (task.priority == "medium") {
+                taskDiv.style.color = "orange";
+              } else if (task.priority == "low") {
+                taskDiv.style.color = "#5de651";
+              }
               taskDiv.textContent = task.description;
               taskDiv.setAttribute("data-uid",task.uid);
               timeSlot.appendChild(taskDiv);
@@ -98,52 +105,67 @@ function taskAddEventListener() {
     const addTaskBtn = document.getElementById("addTaskButton");
     const updateTaskBtn = document.getElementById("updateTaskButton");
     const manageTaskContainer = document.getElementById("manageTaskContainer");
-    for(let i = 0; i < tasksDiv.length; i++) {
+    for(let i = 0; i < tasksDiv.length; i++) { //loop thru every task in the day
         tasksDiv[i].addEventListener("click", ()=> { //add event listener for every task
-            sessionStorage.setItem("taskUid",tasksDiv[i].getAttribute("data-uid"));
-            const task = tasks.find(event => tasksDiv[i].textContent === event.description);
+            const task = tasks.find(event => tasksDiv[i].getAttribute("data-uid") === event.uid); //get task inside tasks array
+
             let descriptionDiv = document.getElementById("description");
             descriptionDiv.textContent = `Description: ${task.description}`;
             let startTimeDiv = document.getElementById("startTime");
-            startTimeDiv.textContent = `Start Time: ${task.time}`
+            startTimeDiv.textContent = `Start Time: ${task.time}`;
             let dateDiv = document.getElementById("date");
-            dateDiv.textContent = `Date: ${task.date}`
+            dateDiv.textContent = `Date: ${task.date}`;
+            let priorityDiv = document.getElementById("priority");
+            priorityDiv.textContent = `Priority: ${task.priority}`;
+
             mainContainer.classList.add("hide") //hide mainContainer
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
-            updateTaskBtn.classList.remove("hide");
-            //addeventlistener to descriptionDiv, startTimeDiv, dateDiv
+            updateTaskBtn.classList.remove("hide");//show update task button
+
+            //addeventlistener to descriptionDiv, startTimeDiv, dateDiv, priorityDiv
             descriptionDiv.addEventListener("click",()=>{
                 const descriptionInput = prompt("Enter New Description");
+                if(descriptionInput)
                 descriptionDiv.textContent = `Description: ${descriptionInput}`;
             })
             startTimeDiv.addEventListener("click",()=>{
                 const startTimeInput = prompt("Enter new task time (HH:MM, 24-hour format):");
-                startTimeInput.textContent = `Start Time: ${startTimeInput}`;
+                if(startTimeInput)
+                startTimeDiv.textContent = `Start Time: ${startTimeInput}`;
             })
             dateDiv.addEventListener("click",()=>{
                 const dateInput = prompt("Enter New Date (YYYY-MM-DD)");
+                if(dateInput)
                 dateDiv.textContent = `Date: ${dateInput}`;
+            })
+            priorityDiv.addEventListener("click",()=>{
+                const priorityInput = prompt("Enter New Priority (high,medium,low)");
+                if(priorityInput)
+                priorityDiv.textContent = `Priority: ${priorityInput}`;
             })
             //addeventlistener to remove
             document.getElementById("removeTaskButton").addEventListener("click",()=>{
-                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
+                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",task.uid);
                 deleteDoc(taskRef).then(()=>{alert("Task Deleted");window.location.href = "dailyCalendar.html";});
             })
+
             // addeventlistener to update
             document.getElementById("updateTaskButton").addEventListener("click",()=>{
                 showLoader();
-                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",sessionStorage.getItem("taskUid"));
+                const taskRef = doc(firestore,"users",localStorage.getItem("user"),"tasks",task.uid);
                 updateDoc(taskRef,{
                     Description: descriptionDiv.textContent.substring(13),
                     StartTime: startTimeDiv.textContent.substring(12),
-                    date:  dateDiv.textContent.substring(6)
+                    date:  dateDiv.textContent.substring(6),
+                    priority: priorityDiv.textContent.substring(10)
                 }).then(()=>{
                     hideLoader();
                     alert("Update Successfully!");
                     window.location.href = "dailyCalendar.html";
                 })
             })
+
         })
     }
 }
@@ -179,6 +201,7 @@ document.getElementById("nextDay").addEventListener("click",()=>{
 document.getElementById("addTaskButton").addEventListener("click", () => {
     const taskTime = prompt("Enter task time (HH:MM, 24-hour format):");
     const taskDescription = prompt("Enter task description:");
+    const priority = prompt("Priority: (high,medium,low)");
     const taskDate = currentDate.toISOString().split("T")[0];
 
     if (taskTime && taskDescription) {
@@ -187,6 +210,7 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
             Description:taskDescription,
             StartTime:taskTime,
             date:taskDate,
+            priority:priority,
         }).then((docRef) => {
             location.reload();
           })
@@ -217,7 +241,7 @@ const colRef = collection(firestore,"users",localStorage.getItem("user"),"tasks"
 const getCol = await getDocs(colRef);
 getCol.forEach(doc => {
     const data = doc.data();
-    tasks.push({date:data.date, time:data.StartTime, description:data.Description, uid:doc.id})
+    tasks.push({date:data.date, time:data.StartTime, description:data.Description, priority:data.priority, uid:doc.id})
 })
 const dayTasks = tasks.filter(t => t.date === formattedDate); //filter tasks to only today task
 generateTimeline(dayTasks);
