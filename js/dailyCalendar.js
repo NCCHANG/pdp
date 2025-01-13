@@ -121,7 +121,6 @@ function taskAddEventListener() {
             mainContainer.classList.add("hide") //hide mainContainer
             addTaskBtn.classList.add("hide") //hide add task button
             manageTaskContainer.classList.remove("hide");//show manage task container
-            updateTaskBtn.classList.remove("hide");//show update task button
 
             //addeventlistener to descriptionDiv, startTimeDiv, dateDiv, priorityDiv
             descriptionDiv.addEventListener("click",()=>{
@@ -177,7 +176,6 @@ document.getElementById("close").addEventListener("click",()=> {
     mainContainer.classList.remove("hide"); //show mainContainer
     addTaskBtn.classList.remove("hide"); //show add task button
     manageTaskContainer.classList.add("hide"); //hide manageTaskContainer
-    updateTaskBtn.classList.add("hide");
 })
 //----------------------------
 function changeDay(offset) {
