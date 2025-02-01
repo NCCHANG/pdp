@@ -14,10 +14,12 @@ body {
     font-family : "Kadwa", serif;
     width:100%;
 }
+
 img {
     width: 30px;
     height: 30px;
 }
+
 .iconBorder {
     font-family: serif;
     border-width: 2px;
